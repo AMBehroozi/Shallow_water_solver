@@ -57,3 +57,19 @@ Generates real-time animated plots of:
 
 You can execute the solver in **Google Colab** or locally with CUDA support. For a minimal working example:
 
+
+```python
+initial_height = create_initial_condition(tri_mesh.cells, device)
+solver = TorchMeshSolver(tri_mesh)
+solver.init_height(initial_height)
+ani = simulate_and_plot_torch(
+    solver, 
+    target_time=2.0, 
+    dt=0.005, 
+    fps=30, 
+    speed_up=10, 
+    norm_h=..., 
+    norm_v=...
+)
+HTML(ani.to_jshtml())
+
